@@ -1,0 +1,3 @@
+theme: jekyll-theme-slate
+title: Transient Denial of Service Vulnerabilities in Unisoc Tanggula T760's 5G Baseband
+description: Multiple transient denial of service (DoS) vulnerabilities can be triggered in Unisoc Tanggula T760's integrated 5G baseband using unauthenticated downlink radio resource control (RRC) setup messages without requiring user interaction.
