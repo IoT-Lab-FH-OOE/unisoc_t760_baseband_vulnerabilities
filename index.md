@@ -3,20 +3,18 @@
 | Affected Product    | Unisoc Tanggula T760 system-on-chip (SoC) with integrated 5G baseband             |
 | Affected Firmware   | `5G_MODEM_V2_23B_W24.33.5_P16.1` (older versions may also be affected)            |
 | CVE IDs             | [CVE-2025-31717](https://www.cve.org/CVERecord?id=CVE-2025-31717), [CVE-2025-31718](https://www.cve.org/CVERecord?id=CVE-2025-31718) |
-| Vendor Website      | https://www.unisoc.com                                                            |
+| Vendor Website      | [https://www.unisoc.com](https://www.unisoc.com)                                  |
 | Identified in       | June 2025                                                                         |
 | Identified by       | IoT Lab, University of Applied Sciences Upper Austria, Campus Hagenberg           |
-| Website             | https://www.fh-ooe.at/si/                                                         |
-| Team                | Denis Krämer B.Sc.                                                                |
-|                     | Dieter Vymazal M.Sc.                                                              |
-|                     | DI Markus Zeilinger                                                               |
+| Website             | [https://www.fh-ooe.at/si/](https://www.fh-ooe.at/si/)                            |
+| Team                | Denis Krämer B.Sc., Dieter Vymazal M.Sc., DI Markus Zeilinger                     |
 | Contact Information | Denis Krämer <br> <denis.kraemer@students.fh-hagenberg.at> <br> 7B5B 5FCD 14A2 4A20 C43A A6D0 8B78 FC61 E205 BE39 |
 
 ## Vendor Description
 
 *"UNISOC is a globally leading chip design company specializing in the communication semiconductor industry for over 20 years. It possesses comprehensive capabilities in chip design, wireless communication, and the integration of hardware and software systems [...]."*
 
-Source: https://www.unisoc.com/en/about/company-info
+Source: [https://www.unisoc.com/en/about/company-info](https://www.unisoc.com/en/about/company-info)
 
 ## Overview
 
@@ -28,9 +26,9 @@ An attacker can use a malicious gNB to send modified RRC setup messages to nearb
 
 ## Proof of Concept
 
-In the proof of concept (PoC) video for vulnerability V1, a modified RRC setup message is sent to the baseband upon connecting to a malicious nearby gNB. A reachable assertion in the firmware is triggered and the modem restarts, which can be verified by the Android Debug Bridge (adb) logs of the smartphone. The adb logs contain further information about the location of the exception. Moreover, a pop-up notification `No SIM card found` on the display of the Android smartphone and a temporary loss of connectivity can be observed.
+In the following proof of concept (PoC) exploitation video for vulnerability V1, a modified RRC setup message is sent to the baseband upon connecting to a malicious nearby gNB. A reachable assertion in the firmware is triggered and the modem restarts, which can be verified by the Android Debug Bridge (adb) logs of the smartphone. The adb logs contain further information about the location of the exception. Moreover, a pop-up notification `No SIM card found` on the display of the Android smartphone and a temporary loss of connectivity can be observed.
 
-<video controls muted preload><source src="/unisoc_t760_baseband_vulnerabilities/assets/videos/V1_poc_exploit_2x.mp4" type="video/mp4"></video> <br> *Video 1: Proof of concept exploitation of vulnerability V1.*
+<video controls muted preload><source src="/unisoc_t760_baseband_vulnerabilities/assets/videos/V1_poc_exploit_2x.mp4" type="video/mp4"></video>
 
 ## Reproduction
 
