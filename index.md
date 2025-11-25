@@ -1,13 +1,7 @@
-# Transient Denial of Service Vulnerabilities in Unisoc Tanggula T760's 5G Baseband
-
-## Summary
-
-Multiple transient denial of service (DoS) vulnerabilities can be triggered in Unisoc Tanggula T760's integrated 5G baseband using unauthenticated downlink radio resource control (RRC) setup messages without requiring user interaction.
-
 | Title               | Transient Denial of Service Vulnerabilities in Unisoc Tanggula T760's 5G Baseband |
 | ------------------- | --------------------------------------------------------------------------------- |
 | Affected Product    | Unisoc Tanggula T760 system-on-chip (SoC) with integrated 5G baseband             |
-| Affected Firmware   | 5G_MODEM_V2_23B_W24.33.5_P16.1 (older versions may also be affected)              |
+| Affected Firmware   | `5G_MODEM_V2_23B_W24.33.5_P16.1` (older versions may also be affected)            |
 | CVE IDs             | [CVE-2025-31717](https://www.cve.org/CVERecord?id=CVE-2025-31717), [CVE-2025-31718](https://www.cve.org/CVERecord?id=CVE-2025-31718) |
 | Vendor Website      | https://www.unisoc.com                                                            |
 | Identified in       | June 2025                                                                         |
@@ -36,7 +30,7 @@ An attacker can use a malicious gNB to send modified RRC setup messages to nearb
 
 In the proof of concept (PoC) video for vulnerability V1, a modified RRC setup message is sent to the baseband upon connecting to a malicious nearby gNB. A reachable assertion in the firmware is triggered and the modem restarts, which can be verified by the Android Debug Bridge (adb) logs of the smartphone. The adb logs contain further information about the location of the exception. Moreover, a pop-up notification `No SIM card found` on the display of the Android smartphone and a temporary loss of connectivity can be observed.
 
-<video src="/assets/videos/V1_poc_exploit_2x.mp4" controls muted preload>Proof of concept video for vulnerability V1.</video>
+<video controls muted preload><source src="/unisoc_t760_baseband_vulnerabilities/assets/videos/V1_poc_exploit_2x.mp4" type="video/mp4"></video> <br> *Video 1: Proof of concept exploitation of vulnerability V1.*
 
 ## Reproduction
 
@@ -50,9 +44,9 @@ Triggering vulnerability V1 results in the following adb log entry:
 MODEM_SILENT_PANIC: Error message: Modem Assert: NR_PAL_L_TASK Task  PHY CP assert in file nr_fsm_handle.c line 12999 exp=0 info=[PAL:ASSERT:bwpIdx is not found.1], [dfs=5], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the first four bytes of a valid RRC setup message to `{0xf0, 0x1d, 0x66, 0xb1}`. According to the interpretation by the Wireshark dissector, this results in a different semantic interpretation of the `Contention Resolution` subheader.
+To reproduce this issue, starting from the MAC-NR layer, change the first four bytes of a valid RRC setup message to `{0xf0, 0x1d, 0x66, 0xb1}`, as shown in figure 1. According to the interpretation by the Wireshark dissector, this results in a different semantic interpretation of the `Contention Resolution` subheader.
 
-![Comparison of the dissected original and modified RRC setup message in Wireshark](/assets/images/V1_rrc_setup_original_vs_modified.png)
+<img src="assets/images/V1_rrc_setup_original_vs_modified.png" alt=""> <br> *Figure 1: Comparison of the original and modified RRC setup message for vulnerability V1 in Wireshark.*
 
 ## Vulnerability V2: invalid monitoringSymbolsWithinSlot ([CVE-2025-31718](https://www.cve.org/CVERecord?id=CVE-2025-31718))
 
@@ -64,9 +58,9 @@ MODEM_SILENT_PANIC: Error message: Modem Assert: NR_CTRL_SLOT_TASK Task  PHY CP 
 
 Note: this message is logged without a closing bracket.
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 51 of a valid RRC setup message to `{0x5b}`. According to the interpretation by the Wireshark dissector, this corresponds to changing the value of the `monitoringSymbolsWithinSlot` field inside the RRC payload to `{0x82, 0xd8}`.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 51 of a valid RRC setup message to `{0x5b}`, as shown in figure 2. According to the interpretation by the Wireshark dissector, this corresponds to changing the value of the `monitoringSymbolsWithinSlot` field inside the RRC payload to `{0x82, 0xd8}`.
 
-![Comparison of the dissected original and modified RRC setup message in Wireshark](/assets/images/V2_rrc_setup_original_vs_modified.png)
+<img src="assets/images/V2_rrc_setup_original_vs_modified.png" alt=""> <br> *Figure 2: Comparison of the original and modified RRC setup message for vulnerability V2 in Wireshark.*
 
 Note: the payload that triggers vulnerability V2 is identical to [CVE-2023-32841](https://www.cve.org/CVERecord?id=CVE-2023-32841), which affects another baseband vendor.
 
@@ -75,7 +69,7 @@ Note: the payload that triggers vulnerability V2 is identical to [CVE-2023-32841
 The following product and firmware were tested and found to be affected by the vulnerabilities:
 
 * Smartphone: Motorola Moto G35 5G (Unisoc Tanggula T760 with integrated 5G baseband)
-* Firmware: Android 14, Build: UOA34.216-174-12, Patch level: 2025-04-05, Baseband version: 5G_MODEM_V2_23B_W24.33.5_P16.1 (older versions may also be affected)
+* Firmware: Android 14, Build: `UOA34.216-174-12`, Patch level: 2025-04-05, Baseband version: `5G_MODEM_V2_23B_W24.33.5_P16.1` (older versions may also be affected)
 
 SHA-256 hash of the affected baseband firmware image (bundled by Motorola):
 ```
