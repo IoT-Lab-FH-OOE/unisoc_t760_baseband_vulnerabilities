@@ -314,9 +314,9 @@ ffc8ece7229e30cc530d45fa1257c63c57370e6e36503aa39b315f8f7eede126  SC9600_QogirN6
 
 ## Solution
 
-Unisoc publicly disclosed the vulnerabilities V1 and V2 as part of their [October 2025 Security Bulletin](https://www.unisoc.com/en/support/announcement/1976557615080263681). Moreover, Unisoc stated that they have released updated baseband firmware which fixes these vulnerabilities. According to Unisoc, the baseband firmware version `5G_MODEM_V2_23B_W24.26.4_P21` for the Motorola Moto G35 5G includes patches for the vulnerabilities V1 and V2.
+Unisoc publicly disclosed the vulnerabilities V1 - V2 as part of their [October 2025 Security Bulletin](https://www.unisoc.com/en/support/announcement/1976557615080263681). Moreover, Unisoc stated that they have released updated baseband firmware which fixes these vulnerabilities. According to Unisoc, the baseband firmware version `5G_MODEM_V2_23B_W24.26.4_P21` includes patches for the vulnerabilities V1 - V2.
 
-Unisoc publicly disclosed the vulnerabilities V3 to V13 as part of their [December 2025 Security Bulletin](https://www.unisoc.com/en/support/announcement/1995394837938163714).
+Unisoc publicly disclosed the vulnerabilities V3 - V13 as part of their [December 2025 Security Bulletin](https://www.unisoc.com/en/support/announcement/1995394837938163714). Moreover, Unisoc stated that they have released updated baseband firmware which fixes these vulnerabilities. According to Unisoc, the baseband firmware version `5G_MODEM_V2_23B_W24.33.5_P18.2` includes patches for the vulnerabilities V3 - V13.
 
 ## Communication Timeline
 
@@ -337,7 +337,7 @@ We submitted a total of three vulnerability reports to Unisoc. The corresponding
 | 2025-10-11 | -            | Unisoc releases their October 2025 security bulletin (predated to 2025-10-01). |
 | 2025-10-14 | Denis Krämer | Inquired about the mapping of vulnerabilities to CVE IDs, pointed out an inconsistency in the CVSS scores. |
 | 2025-10-15 | Unisoc       | Clarifies the mapping and updates the CVSS scores. |
-| 2025-11-04 | Denis Krämer | Asked which baseband firmware version fixes the vulnerabilities V1 and V2. |
+| 2025-11-04 | Denis Krämer | Asked which baseband firmware version fixes the vulnerabilities V1 - V2. |
 | 2025-11-06 | Unisoc       | States that firmware version `5G_MODEM_V2_23B_W24.26.4_P21` fixes these issues. |
 
 ### Vulnerability Report 2 (Vulnerabilities V3 - V13)
@@ -353,7 +353,8 @@ We submitted a total of three vulnerability reports to Unisoc. The corresponding
 | 2025-08-26 | Unisoc       | Acknowledges the vulnerabilities as valid, plans to disclose them in November or December 2025. |
 | 2025-12-01 | -            | Unisoc releases their December 2025 security bulletin. |
 | 2025-12-01 | Unisoc       | Provides a mapping for the vulnerabilities to CVE IDs. |
-| 2025-12-01 | Denis Krämer | Thanked for the information. Asked which baseband firmware version fixes the vulnerabilities V3 to V13. |
+| 2025-12-01 | Denis Krämer | Thanked for the information. Asked which baseband firmware version fixes the vulnerabilities V3 - V13. |
+| 2025-12-02 | Unisoc       | States that firmware version `5G_MODEM_V2_23B_W24.33.5_P18.2` fixes these issues. |
 
 ## Version History
 
@@ -361,4 +362,5 @@ We submitted a total of three vulnerability reports to Unisoc. The corresponding
 | ---------- | ------- | -------------------------------------------- |
 | 2025-11-25 | v1.0    | Initial release of vulnerabilities V1 - V2   |
 | 2025-11-25 | v1.1    | Cosmetic changes                             |
-| 2025-12-01 | v2.0    | Added disclosure of vulnerabilities V3 - V13 |
+| 2025-12-01 | v2.0    | Add disclosure of vulnerabilities V3 - V13   |
+| 2025-12-02 | v2.1    | Include patch information for V3 - V13       |
