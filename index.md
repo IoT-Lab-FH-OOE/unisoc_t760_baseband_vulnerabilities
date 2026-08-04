@@ -2,9 +2,9 @@
 | ----------------- | --------------------------------------------------------------------------------------- |
 | Affected Product  | Unisoc Tanggula T760/T8100 system-on-chip (SoC) with integrated 5G baseband             |
 | Affected Firmware | `5G_MODEM_V2_23B_W24.33.5_P16.1` (older versions may also be affected)                  |
-| CVE IDs           | [CVE-2025-31717](https://www.cve.org/CVERecord?id=CVE-2025-31717), [CVE-2025-31718](https://www.cve.org/CVERecord?id=CVE-2025-31718), [CVE-2025-11131](https://www.cve.org/CVERecord?id=CVE-2025-11131), [CVE-2025-11132](https://www.cve.org/CVERecord?id=CVE-2025-11132), [CVE-2025-11133](https://www.cve.org/CVERecord?id=CVE-2025-11133), <br> [CVE-2025-3012](https://www.cve.org/CVERecord?id=CVE-2025-3012), [CVE-2025-61617](https://www.cve.org/CVERecord?id=CVE-2025-61617), [CVE-2025-61618](https://www.cve.org/CVERecord?id=CVE-2025-61618), [CVE-2025-61619](https://www.cve.org/CVERecord?id=CVE-2025-61619), [CVE-2025-61607](https://www.cve.org/CVERecord?id=CVE-2025-61607), <br> [CVE-2025-61608](https://www.cve.org/CVERecord?id=CVE-2025-61608), [CVE-2025-61609](https://www.cve.org/CVERecord?id=CVE-2025-61609), [CVE-2025-61610](https://www.cve.org/CVERecord?id=CVE-2025-61610), [CVE-2025-61612](https://www.cve.org/CVERecord?id=CVE-2025-61612), [CVE-2025-61613](https://www.cve.org/CVERecord?id=CVE-2025-61613), <br> [CVE-2025-61614](https://www.cve.org/CVERecord?id=CVE-2025-61614), [CVE-2025-61615](https://www.cve.org/CVERecord?id=CVE-2025-61615), [CVE-2025-61616](https://www.cve.org/CVERecord?id=CVE-2025-61616), [CVE-2025-69278](https://www.cve.org/CVERecord?id=CVE-2025-69278), [CVE-2025-69279](https://www.cve.org/CVERecord?id=CVE-2025-69279) |
+| CVE IDs           | [CVE-2025-31717](https://www.cve.org/CVERecord?id=CVE-2025-31717), [CVE-2025-31718](https://www.cve.org/CVERecord?id=CVE-2025-31718), [CVE-2025-11131](https://www.cve.org/CVERecord?id=CVE-2025-11131), [CVE-2025-11132](https://www.cve.org/CVERecord?id=CVE-2025-11132), [CVE-2025-11133](https://www.cve.org/CVERecord?id=CVE-2025-11133), <br> [CVE-2025-3012](https://www.cve.org/CVERecord?id=CVE-2025-3012), [CVE-2025-61617](https://www.cve.org/CVERecord?id=CVE-2025-61617), [CVE-2025-61618](https://www.cve.org/CVERecord?id=CVE-2025-61618), [CVE-2025-61619](https://www.cve.org/CVERecord?id=CVE-2025-61619), [CVE-2025-61607](https://www.cve.org/CVERecord?id=CVE-2025-61607), <br> [CVE-2025-61608](https://www.cve.org/CVERecord?id=CVE-2025-61608), [CVE-2025-61609](https://www.cve.org/CVERecord?id=CVE-2025-61609), [CVE-2025-61610](https://www.cve.org/CVERecord?id=CVE-2025-61610), [CVE-2025-61612](https://www.cve.org/CVERecord?id=CVE-2025-61612), [CVE-2025-61613](https://www.cve.org/CVERecord?id=CVE-2025-61613), <br> [CVE-2025-61614](https://www.cve.org/CVERecord?id=CVE-2025-61614), [CVE-2025-61615](https://www.cve.org/CVERecord?id=CVE-2025-61615), [CVE-2025-61616](https://www.cve.org/CVERecord?id=CVE-2025-61616), [CVE-2025-69278](https://www.cve.org/CVERecord?id=CVE-2025-69278), [CVE-2025-69279](https://www.cve.org/CVERecord?id=CVE-2025-69279), <br> [CVE-2026-21548](https://www.cve.org/CVERecord?id=CVE-2026-21548) |
 | Vendor Website    | [https://www.unisoc.com](https://www.unisoc.com)                                        |
-| Identified in     | June - July 2025                                                                        |
+| Identified in     | June - August 2025 (V1 - V20), February 2026 (V22)                                      |
 | Identified by     | IoT Lab, University of Applied Sciences Upper Austria, Campus Hagenberg                 |
 | Website           | [https://www.fh-ooe.at/si/](https://www.fh-ooe.at/si/)                                  |
 | Team              | Denis Krämer B.Sc., Dieter Vymazal M.Sc., DI Markus Zeilinger                           |
@@ -42,7 +42,7 @@ Triggering vulnerability V1 results in the following adb log entry:
 NR_PAL_L_TASK Task  PHY CP assert in file nr_fsm_handle.c line 12999 exp=0 info=[PAL:ASSERT:bwpIdx is not found.1], [dfs=5], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the first four bytes of a valid RRC setup message to `{0xf0, 0x1d, 0x66, 0xb1}` (as shown in figure 1). According to Wireshark, this results in a different semantic interpretation of the `Contention Resolution` subheader.
+To reproduce this issue, starting from the MAC-NR layer, change the first four bytes of a valid RRC setup message to `{0xf0, 0x1d, 0x66, 0xb1}` (as shown in Figure 1). According to Wireshark, this results in a different semantic interpretation of the `Contention Resolution` subheader.
 
 <details open>
 <summary>Figure 1: Comparison of the original and modified RRC setup message for vulnerability V1 in Wireshark.</summary>
@@ -59,7 +59,7 @@ NR_CTRL_SLOT_TASK Task  PHY CP assert in file nr_sym_buf_v2.c line 351 exp=0 inf
 
 Note: this message is logged without a closing bracket.
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 51 of a valid RRC setup message to `{0x5b}` (as shown in figure 2). According to Wireshark, this corresponds to changing the value of the `monitoringSymbolsWithinSlot` field inside the RRC payload to `{0x82, 0xd8}`.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 51 of a valid RRC setup message to `{0x5b}` (as shown in Figure 2). According to Wireshark, this corresponds to changing the value of the `monitoringSymbolsWithinSlot` field inside the RRC payload to `{0x82, 0xd8}`.
 
 <details open>
 <summary>Figure 2: Comparison of the original and modified RRC setup message for vulnerability V2 in Wireshark.</summary>
@@ -76,7 +76,7 @@ Triggering vulnerability V3 results in the following adb log entry:
 NRRC Task  PS CP assert in file threadx_assert.c line 7586 exp=Abort exception handler ! info=[], [dfs=5], [abort_pc=0x93179066 abort_r13=0x97234660 DFSR=0xd FAR=0xb3f6e863 svc_r13=0x947cc8d0 irq_r13=0x9723ee38]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 106 of a valid RRC setup message to the value `{0xe0}` (as shown in figure 3). According to Wireshark, this corresponds to changing the first two bytes of the `srs-Config setup` field inside the RRC payload to `{0x9c, 0x00}`.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 106 of a valid RRC setup message to the value `{0xe0}` (as shown in Figure 3). According to Wireshark, this corresponds to changing the first two bytes of the `srs-Config setup` field inside the RRC payload to `{0x9c, 0x00}`.
 
 <details open>
 <summary>Figure 3: Comparison of the original and modified RRC setup message for vulnerability V3 in Wireshark.</summary>
@@ -93,7 +93,7 @@ NR_DL_SLOT_LOW_TASK Task  PHY CP assert in file nr_sym_buf_v2.c line 377 exp=0 i
 
 Note: this message is logged without a closing bracket.
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 134 of a valid RRC setup message to any of the following values: `{0x15}`, `{0x67}` or `{0xa9}` (this list is not exhaustive), e.g. `{0x15}` (as shown in figure 4). According to Wireshark, this corresponds to changing the 4th byte of the `nzp-CSI-RS-ResourceToAddModList` field inside the RRC payload, e.g. to `{0x02}`. This in turn changes the therein contained `frequencyDomainAllocation`, `nrofPorts` and `firstOFDMSymbolInTimeDomain` fields to invalid values.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 134 of a valid RRC setup message to any of the following values: `{0x15}`, `{0x67}` or `{0xa9}` (this list is not exhaustive), e.g. `{0x15}` (as shown in Figure 4). According to Wireshark, this corresponds to changing the 4th byte of the `nzp-CSI-RS-ResourceToAddModList` field inside the RRC payload, e.g. to `{0x02}`. This in turn changes the therein contained `frequencyDomainAllocation`, `nrofPorts` and `firstOFDMSymbolInTimeDomain` fields to invalid values.
 
 <details open>
 <summary>Figure 4: Comparison of the original and modified RRC setup message for vulnerability V4 in Wireshark.</summary>
@@ -125,7 +125,7 @@ Triggering vulnerability V5 results in the following adb log entry:
 NRRC Task  PS CP assert in file nrrc_main.c line 5999 exp=(0) info=[NRRC: wait_for_nrcp_cnf_timer TIMER OUT, msg_id=8], [dfs=5], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 134 of a valid RRC setup message to any of the following values: `{0x04}`, `{0x06}` or `{0x0b}`, e.g. `{0x04}` (as shown in figure 5). According to Wireshark, this corresponds to changing the 4th and 5th byte of the `nzp-CSI-RS-ResourceToAddModList` field inside the RRC payload, e.g. to `{0x00, 0x82}`. This in turn changes the therein contained `frequencyDomainAllocation` and `firstOFDMSymbolInTimeDomain` fields to invalid values.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 134 of a valid RRC setup message to any of the following values: `{0x04}`, `{0x06}` or `{0x0b}`, e.g. `{0x04}` (as shown in Figure 5). According to Wireshark, this corresponds to changing the 4th and 5th byte of the `nzp-CSI-RS-ResourceToAddModList` field inside the RRC payload, e.g. to `{0x00, 0x82}`. This in turn changes the therein contained `frequencyDomainAllocation` and `firstOFDMSymbolInTimeDomain` fields to invalid values.
 
 <details open>
 <summary>Figure 5: Comparison of the original and modified RRC setup message for vulnerability V5 in Wireshark.</summary>
@@ -149,7 +149,7 @@ Triggering vulnerability V6 results in the following adb log entry:
 ngrant_sig_task PS CP assert in file threadx_assert.c line 7586 exp=Abort exception handler ! info=[], [dfs=5], [abort_pc=0x92e58782 abort_r13=0x97234660 DFSR=0x80d FAR=0xe59ff018 svc_r13=0x94a28fc8 irq_r13=0x9723ee38]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 15 of a valid RRC setup message to the value `{0x0c}` (as shown in figure 6). According to Wireshark, this corresponds to changing the 2nd and 3rd byte of the `masterCellGroup` field inside the RRC payload to `{0x01, 0x90}`.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 15 of a valid RRC setup message to the value `{0x0c}` (as shown in Figure 6). According to Wireshark, this corresponds to changing the 2nd and 3rd byte of the `masterCellGroup` field inside the RRC payload to `{0x01, 0x90}`.
 
 <details open>
 <summary>Figure 6: Comparison of the original and modified RRC setup message for vulnerability V6 in Wireshark.</summary>
@@ -166,7 +166,7 @@ Triggering vulnerability V7 results in the following adb log entry:
 NR_PAL_L_TASK Task  PHY CP assert in file nr_ul_control.c line 4764 exp=NULL NEQ (puc_slot_config->puc_cfg[0].puc_resouce) info=[multi csi first resource ptr invalid], [dfs=7], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in figure 7):
+To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in Figure 7):
 
 | Offset | Value |
 | ------ | ----- |
@@ -196,7 +196,7 @@ NR_PS_TO_PHY_TASK Task  PHY CP assert in file nr_fsm_handle.c line 12999 exp=0 i
 
 Note: this is similar to vulnerability V1 from our previous report, but occurs in a different task (`NR_PS_TO_PHY_TASK` instead of `NR_PAL_L_TASK`).
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 34 of a valid RRC setup message to the value `{0x83}` (as shown in figure 8). According to Wireshark, this corresponds to changing the 2nd and 3rd byte of the `spCellConfig` field inside the RRC payload to `{0x10, 0x69}`. Notably, this truncation affects the `bwp-Id` field in the `tci-StatesToAddModList`, `csi-ResourceConfigToAddModList` and `CSI-ResourceConfig` fields.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 34 of a valid RRC setup message to the value `{0x83}` (as shown in Figure 8). According to Wireshark, this corresponds to changing the 2nd and 3rd byte of the `spCellConfig` field inside the RRC payload to `{0x10, 0x69}`. Notably, this truncation affects the `bwp-Id` field in the `tci-StatesToAddModList`, `csi-ResourceConfigToAddModList` and `CSI-ResourceConfig` fields.
 
 <details open>
 <summary>Figure 8: Comparison of the original and modified RRC setup message for vulnerability V8 in Wireshark.</summary>
@@ -211,7 +211,7 @@ Triggering vulnerability V9 results in the following adb log entry:
 NR_PS_TO_PHY_TASK Task  PHY CP assert in file threadx_assert.c line 7586 exp=Abort exception handler ! info=[], [dfs=5], [abort_pc=0x97c286b8 abort_r13=0xa15136d0 DFSR=0x406 FAR=0xf1e4ff7d svc_r13=0x9dc71274 irq_r13=0x410c42c0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 39 of a valid RRC setup message to any value in the range `{0x10}` to `{0x5f}`, e.g. `{0x57}` (as shown in figure 9). According to Wireshark, this corresponds to changing the 2nd byte of the `pdcch-Config controlResourceSetToAddModList` field inside the RRC payload, e.g. to `{0x8a}`. This in turn changes the value of the corresponding `controlResourceSetId`, e.g. to `{0xa}`.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 39 of a valid RRC setup message to any value in the range `{0x10}` to `{0x5f}`, e.g. `{0x57}` (as shown in Figure 9). According to Wireshark, this corresponds to changing the 2nd byte of the `pdcch-Config controlResourceSetToAddModList` field inside the RRC payload, e.g. to `{0x8a}`. This in turn changes the value of the corresponding `controlResourceSetId`, e.g. to `{0xa}`.
 
 <details open>
 <summary>Figure 9: Comparison of the original and modified RRC setup message for vulnerability V9 in Wireshark.</summary>
@@ -228,7 +228,7 @@ Triggering vulnerability V10 results in the following adb log entry:
 NR_PAL_L_TASK Task  PHY CP assert in file threadx_assert.c line 7586 exp=Abort exception handler ! info=[], [dfs=5], [abort_pc=0x4108b5e0 abort_r13=0xa15136d0 DFSR=0x406 FAR=0xe1f17f5f svc_r13=0x9dc534f8 irq_r13=0x410c42c0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 76 of a valid RRC setup message to any value in the range `{0x00}` to `{0x04}`, e.g. `{0x00}` (as shown in figure 10). According to Wireshark, this corresponds to changing the 5th byte of the `pucch-Config resourceToAddModList` field inside the RRC payload, e.g. to `{0x00}`. This in turn changes the value of the corresponding `pucch-ResourceId`, e.g. to `{0x00}`.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 76 of a valid RRC setup message to any value in the range `{0x00}` to `{0x04}`, e.g. `{0x00}` (as shown in Figure 10). According to Wireshark, this corresponds to changing the 5th byte of the `pucch-Config resourceToAddModList` field inside the RRC payload, e.g. to `{0x00}`. This in turn changes the value of the corresponding `pucch-ResourceId`, e.g. to `{0x00}`.
 
 <details open>
 <summary>Figure 10: Comparison of the original and modified RRC setup message for vulnerability V10 in Wireshark.</summary>
@@ -260,7 +260,7 @@ Triggering vulnerability V11 results in the following adb log entry:
 NR_PS_TO_PHY_TASK Task  PHY CP assert in file nr_fsm_handle.c line 12192 exp=0 info=[PAL:ASSERT:resourceMapping.startPosition 0  is less than num_of_symb 1], [dfs=5], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 116 of a valid RRC setup message to any value in the range `{0x10}` to `{0x12}` (this list is not exhaustive), e.g. `{0x10}` (as shown in figure 11). According to Wireshark, this corresponds to changing the 3rd byte of the `srs-ResourceToAddModList` field inside the RRC payload, e.g. to `{0x02}`. This in turn causes a mismatch between the values of the `startPosition` and `nrofSymbols` fields contained therein.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 116 of a valid RRC setup message to any value in the range `{0x10}` to `{0x12}` (this list is not exhaustive), e.g. `{0x10}` (as shown in Figure 11). According to Wireshark, this corresponds to changing the 3rd byte of the `srs-ResourceToAddModList` field inside the RRC payload, e.g. to `{0x02}`. This in turn causes a mismatch between the values of the `startPosition` and `nrofSymbols` fields contained therein.
 
 <details open>
 <summary>Figure 11: Comparison of the original and modified RRC setup message for vulnerability V11 in Wireshark.</summary>
@@ -275,7 +275,7 @@ Triggering vulnerability V12 results in the following adb log entry:
 NR_PAL_L_TASK Task  PHY CP assert in file nr_pucch_csi.c line 588 exp=0 info=[], [dfs=5], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 144 of a valid RRC setup message to the value `{0x4e}` (as shown in figure 12). According to Wireshark, this corresponds to changing the 2nd and 3rd byte of the `nzp-CSI-RS-ResourceSetToAddModList` field inside the RRC payload to `{0x09, 0xc0}`. Depending on the original RRC setup message, this may result in an invalid `nzp-CSI-RS-ResourceSetToAddModList` and `csi-SSB-ResourceSetToAddModList`. In addition, this leads to a truncation of the remaining `csi-MeasConfig setup` field.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 144 of a valid RRC setup message to the value `{0x4e}` (as shown in Figure 12). According to Wireshark, this corresponds to changing the 2nd and 3rd byte of the `nzp-CSI-RS-ResourceSetToAddModList` field inside the RRC payload to `{0x09, 0xc0}`. Depending on the original RRC setup message, this may result in an invalid `nzp-CSI-RS-ResourceSetToAddModList` and `csi-SSB-ResourceSetToAddModList`. In addition, this leads to a truncation of the remaining `csi-MeasConfig setup` field.
 
 <details open>
 <summary>Figure 12: Comparison of the original and modified RRC setup message for vulnerability V12 in Wireshark.</summary>
@@ -292,7 +292,7 @@ Triggering vulnerability V13 results in the following adb log entry:
 NR_DCI_SCHEDULE_TASK Task  PHY CP assert in file nr_pdsch.c line 2274 exp=0 info=[g_pdsch_watchDog error. 1], [dfs=5], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 123 of a valid RRC setup message to any of the following values: `{0xa2}`, `{0xa3}` or `{0xa6}` (this list is not exhaustive), e.g. `{0xa2}` (as shown in figure 13). According to Wireshark, this corresponds to changing the `pdsch-ServingCellConfig` field inside the RRC payload to an invalid value.
+To reproduce this issue, starting from the MAC-NR layer, change the byte at offset 123 of a valid RRC setup message to any of the following values: `{0xa2}`, `{0xa3}` or `{0xa6}` (this list is not exhaustive), e.g. `{0xa2}` (as shown in Figure 13). According to Wireshark, this corresponds to changing the `pdsch-ServingCellConfig` field inside the RRC payload to an invalid value.
 
 <details open>
 <summary>Figure 13: Comparison of the original and modified RRC setup message for vulnerability V13 in Wireshark.</summary>
@@ -317,7 +317,7 @@ To reproduce this issue, starting from the MAC-NR layer, choose one of the follo
 | 13     | 0xa0      | 0x0c      | 0x50      | 0x7c      | -         |
 | 14     | 0x00      | 0x08      | 0x20      | 0x51      | -         |
 
-According to Wireshark and by example of variant A (as shown in figure 14), this corresponds to changing the first byte inside the RRC payload to `{0x00}` and subsequently leads to a truncation of the `CellGroupConfig` field.
+According to Wireshark and by example of variant A (as shown in Figure 14), this corresponds to changing the first byte inside the RRC payload to `{0x00}` and subsequently leads to a truncation of the `CellGroupConfig` field.
 
 <details open>
 <summary>Figure 14: Comparison of the original and modified RRC setup message for vulnerability V14 in Wireshark.</summary>
@@ -339,7 +339,7 @@ To reproduce this issue, starting from the MAC-NR layer, choose one of the follo
 | 37     | 0xe1      | 0xe5      | 0xb0      |
 | 38     | 0x2c      | 0x2c      | 0x6d      |
 
-According to Wireshark and by example of variant A (as shown in figure 15), this modification corresponds to changing the 23rd and 24th byte inside the RRC payload to `{0x9c, 0x25}`. This in turn alters the `controlResourceSetToAddModList` contained in the `pdcch-Config setup` field and changes its contents to invalid values.
+According to Wireshark and by example of variant A (as shown in Figure 15), this modification corresponds to changing the 23rd and 24th byte inside the RRC payload to `{0x9c, 0x25}`. This in turn alters the `controlResourceSetToAddModList` contained in the `pdcch-Config setup` field and changes its contents to invalid values.
 
 <details open>
 <summary>Figure 15: Comparison of the original and modified RRC setup message for vulnerability V15 in Wireshark.</summary>
@@ -354,7 +354,7 @@ Triggering vulnerability V16 results in the following adb log entry:
 NR_L2_ULHARQ_TASK Task  PS CP assert in file nr_mac_tx.c line 11924 exp=tag_id < NR_MAX_NR_OF_TAGS info=[], [dfs=6], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in figure 16):
+To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in Figure 16):
 
 | Offset | Value |
 | ------ | ----- |
@@ -377,7 +377,7 @@ Triggering vulnerability V17 results in the following adb log entry:
 DRM_SPR_RF Task  PHY CP assert in file drm_rfresourcehandle.c line 5103 exp=((ul_bw !=0) && (ul_bw <= DRM_RF_BW_100MHZ)) info=[Drm_RfResHandle_CalcNrTxOsr: ul bw error 0], [dfs=7], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in figure 17):
+To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in Figure 17):
 
 | Offset | Value |
 | ------ | ----- |
@@ -400,7 +400,7 @@ Triggering vulnerability V18 results in the following adb log entry:
 NR_DCI_SCHEDULE_TASK Task  PHY CP assert in file nr_fec.c line 1389 exp=0 info=[pdsch demod ASIC error], [dfs=7], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in figure 18):
+To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in Figure 18):
 
 | Offset | Value |
 | ------ | ----- |
@@ -429,7 +429,7 @@ Triggering vulnerability V19 results in the following adb log entry:
 NRRC Task  PS CP assert in file threadx_assert.c line 7586 exp=Abort exception handler ! info=[], [dfs=5], [abort_pc=0x931790d2 abort_r13=0x97234660 DFSR=0xd FAR=0xb3f6e37d svc_r13=0x947cc8d0 irq_r13=0x9723ee38]
 ```
 
-To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in figure 19):
+To reproduce this issue, starting from the MAC-NR layer, change the following bytes at the respective offsets of a valid RRC setup message (as shown in Figure 19):
 
 | Offset | Value |
 | ------ | ----- |
@@ -465,11 +465,38 @@ To reproduce this issue, starting from the MAC-NR layer, choose one of the follo
 | 58     | -         | 0x0d      | 0x1b      |
 | 59     | -         | -         | 0x9e      |
 
-According to Wireshark and by example of variant A (as shown in figure 20), this modification corresponds to changing the 40th to 42nd byte inside the RRC payload to `{0x17, 0x76, 0xa0}`. This in turn alters the `pdsch-Config setup` field inside the `spCellConfig` field and changes its contents to invalid values. Moreover, it leads to a truncation of the remaining fields in the RRC setup message.
+According to Wireshark and by example of variant A (as shown in Figure 20), this modification corresponds to changing the 40th to 42nd byte inside the RRC payload to `{0x17, 0x76, 0xa0}`. This in turn alters the `pdsch-Config setup` field inside the `spCellConfig` field and changes its contents to invalid values. Moreover, it leads to a truncation of the remaining fields in the RRC setup message.
 
 <details open>
 <summary>Figure 20: Comparison of the original and modified RRC setup message for vulnerability V20 in Wireshark.</summary>
 <img src="assets/images/V20_rrc_setup_original_vs_modified.png" alt="">
+</details>
+
+## Vulnerability V22: truncated uplinkConfig ([CVE-2026-21548](https://www.cve.org/CVERecord?id=CVE-2026-21548))
+
+Triggering vulnerability V22 results in the following adb log entry:
+
+```
+file nr_uplink_interface.c line 1010,NR_PAL_L_TASK Task  PHY CP assert info exp=0 info=[], [dfs=5], [abort_pc=0 abort_r13=0 DFSR=0 FAR=0 svc_r13=0 irq_r13=0]
+```
+
+To reproduce this issue, starting from the MAC-NR layer, choose one of the following variants (A-D) and change the bytes at the respective offsets of a valid RRC setup message (a dash means no change):
+
+| Offset | Variant A | Variant B | Variant C | Variant D |
+| ------ | --------- | --------- | --------- | --------- |
+| 53     | 0x62      | -         | -         | -         |
+| 54     | 0xc2      | 0x6c      | -         | -         |
+| 55     | -         | 0xde      | -         | -         |
+| 60     | -         | -         | 0x21      | -         |
+| 61     | -         | -         | 0x54      | -         |
+| 62     | -         | -         | -         | 0x61      |
+| 63     | -         | -         | -         | 0x06      |
+
+According to Wireshark and by example of variant A (as shown in Figure 21), this modification corresponds to changing the 39th and 40th byte inside the RRC payload to `{0x8c, 0x58}`. This in turn alters the contents of the `nrofCandidates` field inside the `searchSpacesToAddModList` of the `initialDownlinkBWP pdcch-Config` field and truncates the `pdsch-Config` and `uplinkConfig` fields.
+
+<details open>
+<summary>Figure 21: Comparison of the original and modified RRC setup message for vulnerability V22 in Wireshark.</summary>
+<img src="assets/images/V22_rrc_setup_original_vs_modified.png" alt="">
 </details>
 
 ## Affected Product and Firmware
@@ -493,9 +520,11 @@ Unisoc publicly disclosed the vulnerabilities V3 - V13 as part of their [Decembe
 
 Unisoc publicly disclosed the vulnerabilities V14 - V20 as part of their [March 2026 Security Bulletin](https://www.unisoc.com/en/support/announcement/2030931350138310657). Moreover, Unisoc stated that they have released updated baseband firmware which fixes these vulnerabilities. According to Unisoc, the baseband firmware version `5G_MODEM_V2_23B_W24.32.6_P19.16` includes patches for the vulnerabilities V14 - V20.
 
+Unisoc publicly disclosed the vulnerability V22 as part of their [August 2026 Security Bulletin](https://www.unisoc.com/en/support/announcement/2084109408382668801). Information on which baseband firmware version fixes the vulnerability will be published in this advisory, once available.
+
 ## Communication Timeline
 
-We submitted a total of three vulnerability reports to Unisoc. The corresponding communication timelines are listed below.
+We submitted a total of four vulnerability reports to Unisoc. The corresponding communication timelines are listed below.
 
 ### Vulnerability Report 1 (Vulnerabilities V1 - V2)
 
@@ -546,6 +575,20 @@ We submitted a total of three vulnerability reports to Unisoc. The corresponding
 | 2026-03-09 | Unisoc       | States that it will disclose V14 – V20 in March 2026 as planned. <br> States that firmware version `5G_MODEM_V2_23B_W24.32.6_P19.16` fixes these issues. |
 | 2026-03-09 | -            | Unisoc releases their March 2026 security bulletin (predated to 2026-03-01). |
 
+### Vulnerability Report 4 (Vulnerability V22)
+
+| Date       | Sender       | Description |
+| ---------- | ------------ | ----------- |
+| 2026-02-27 | Denis Krämer | Contacted Unisoc using their PGP public key and attached the fourth vulnerability report. |
+| 2026-02-28 | Unisoc       | Acknowledges receipt of the report. |
+| 2026-03-02 | Unisoc       | Requests a crashdump for vulnerability V22. |
+| 2026-03-02 | Denis Krämer | Requested further information on the crashdump file. |
+| 2026-03-03 | Unisoc       | Provides the requested information. |
+| 2026-03-03 | Denis Krämer | Sent the crashdump file to Unisoc for analysis. |
+| 2026-05-26 | Unisoc       | States that vulnerability V22 will be disclosed in August 2026, asks for the acknowledgement information. |
+| 2026-05-26 | Denis Krämer | Provided the acknowledgement information. |
+| 2026-08-03 | -            | Unisoc releases their August 2026 security bulletin (predated to 2026-08-01). |
+
 ## Version History
 
 | Date       | Version | Changes                                       |
@@ -555,3 +598,4 @@ We submitted a total of three vulnerability reports to Unisoc. The corresponding
 | 2025-12-01 | v2.0    | Add disclosure of vulnerabilities V3 - V13    |
 | 2025-12-02 | v2.1    | Include patch information for V3 - V13        |
 | 2026-03-15 | v3.0    | Add disclosure of vulnerabilities V14 - V20   |
+| 2026-08-04 | v4.0    | Add disclosure of vulnerability V22           |
