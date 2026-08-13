@@ -520,7 +520,7 @@ Unisoc publicly disclosed the vulnerabilities V3 - V13 as part of their [Decembe
 
 Unisoc publicly disclosed the vulnerabilities V14 - V20 as part of their [March 2026 Security Bulletin](https://www.unisoc.com/en/support/announcement/2030931350138310657). Moreover, Unisoc stated that they have released updated baseband firmware which fixes these vulnerabilities. According to Unisoc, the baseband firmware version `5G_MODEM_V2_23B_W24.32.6_P19.16` includes patches for the vulnerabilities V14 - V20.
 
-Unisoc publicly disclosed the vulnerability V22 as part of their [August 2026 Security Bulletin](https://www.unisoc.com/en/support/announcement/2084109408382668801). Information on which baseband firmware version fixes the vulnerability will be published in this advisory, once available.
+Unisoc publicly disclosed vulnerability V22 as part of their [August 2026 Security Bulletin](https://www.unisoc.com/en/support/announcement/2084109408382668801). Moreover, Unisoc stated that they have released updated baseband firmware which fixes this vulnerability. According to Unisoc, the baseband firmware version `5G_MODEM_V2_23A_W26.25.1` includes a patch for vulnerability V22.
 
 ## Communication Timeline
 
@@ -588,6 +588,8 @@ We submitted a total of four vulnerability reports to Unisoc. The corresponding 
 | 2026-05-26 | Unisoc       | States that vulnerability V22 will be disclosed in August 2026, asks for the acknowledgement information. |
 | 2026-05-26 | Denis Krämer | Provided the acknowledgement information. |
 | 2026-08-03 | -            | Unisoc releases their August 2026 security bulletin (predated to 2026-08-01). |
+| 2026-08-04 | Denis Krämer | Asked which baseband firmware version fixes vulnerability V22. |
+| 2026-08-11 | Unisoc       | States that firmware version `5G_MODEM_V2_23A_W26.25.1` fixes this issue. |
 
 ## Version History
 
@@ -599,3 +601,4 @@ We submitted a total of four vulnerability reports to Unisoc. The corresponding 
 | 2025-12-02 | v2.1    | Include patch information for V3 - V13        |
 | 2026-03-15 | v3.0    | Add disclosure of vulnerabilities V14 - V20   |
 | 2026-08-04 | v4.0    | Add disclosure of vulnerability V22           |
+| 2026-08-13 | v4.1    | Include patch information for V22             |
