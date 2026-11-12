@@ -484,7 +484,7 @@ $ adb shell ls -lh /data/ylog/modem
 [...]
 ```
 
-These crash dumps may contain sensitive information, such as the IMSI (as shown below for the PLMN-ID 00101), IMEI, $K_{ASME}$/$K_{SEAF}$ and the keys which are derived and used for the encryption and integrity protection of control and user plane traffic that is exchanged with the mobile network:
+These crash dumps may contain sensitive information, such as the IMSI (as shown below for the PLMN-ID 00101), IMEI, K_ASME/K_SEAF and the keys which are derived and used for the encryption and integrity protection of control and user plane traffic that is exchanged with the mobile network:
 
 ```
 $ adb shell strings /data/ylog/modem/md_memory_20251001-160126.mem | grep 00101
