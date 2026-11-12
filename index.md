@@ -603,7 +603,7 @@ We submitted a total of four vulnerability reports to Unisoc. The corresponding 
 | 2026-07-23 | Unisoc       | Plans to disclose vulnerability V21 in October 2026 and provides its CVE ID. <br> Asks for the acknowledgement information. |
 | 2026-07-23 | Denis Krämer | Provided the acknowledgement information. <br> Informed Unisoc that the CVE ID they provided is already in use by another CNA. <br> Asked for a new CVE ID for vulnerability V21. |
 | 2026-07-24 | Unisoc       | Assigns a new CVE ID to vulnerability V21. |
-| 2027-10-12 | -            | Unisoc releases their October 2026 security bulletin (predated to 2026-10-01). |
+| 2026-10-12 | -            | Unisoc releases their October 2026 security bulletin (predated to 2026-10-01). |
 
 ### Vulnerability Report 4 (Vulnerability V22)
 
@@ -615,7 +615,7 @@ We submitted a total of four vulnerability reports to Unisoc. The corresponding 
 | 2026-03-02 | Denis Krämer | Requested further information on the crashdump file. |
 | 2026-03-03 | Unisoc       | Provides the requested information. |
 | 2026-03-03 | Denis Krämer | Sent the crashdump file to Unisoc for analysis. |
-| 2026-05-26 | Unisoc       | States that vulnerability V22 will be disclosed in August 2026, asks for the acknowledgement information. |
+| 2026-05-26 | Unisoc       | States that vulnerability V22 will be disclosed in August 2026. <br> Asks for the acknowledgement information. |
 | 2026-05-26 | Denis Krämer | Provided the acknowledgement information. |
 | 2026-08-03 | -            | Unisoc releases their August 2026 security bulletin (predated to 2026-08-01). |
 | 2026-08-04 | Denis Krämer | Asked which baseband firmware version fixes vulnerability V22. |
