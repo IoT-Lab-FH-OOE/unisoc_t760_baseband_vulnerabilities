@@ -2,9 +2,9 @@
 | ----------------- | --------------------------------------------------------------------------------------- |
 | Affected Product  | Unisoc Tanggula T760/T8100 system-on-chip (SoC) with integrated 5G baseband             |
 | Affected Firmware | `5G_MODEM_V2_23B_W24.33.5_P16.1` (older versions may also be affected)                  |
-| CVE IDs           | [CVE-2025-31717](https://www.cve.org/CVERecord?id=CVE-2025-31717), [CVE-2025-31718](https://www.cve.org/CVERecord?id=CVE-2025-31718), [CVE-2025-11131](https://www.cve.org/CVERecord?id=CVE-2025-11131), [CVE-2025-11132](https://www.cve.org/CVERecord?id=CVE-2025-11132), [CVE-2025-11133](https://www.cve.org/CVERecord?id=CVE-2025-11133), <br> [CVE-2025-3012](https://www.cve.org/CVERecord?id=CVE-2025-3012), [CVE-2025-61617](https://www.cve.org/CVERecord?id=CVE-2025-61617), [CVE-2025-61618](https://www.cve.org/CVERecord?id=CVE-2025-61618), [CVE-2025-61619](https://www.cve.org/CVERecord?id=CVE-2025-61619), [CVE-2025-61607](https://www.cve.org/CVERecord?id=CVE-2025-61607), <br> [CVE-2025-61608](https://www.cve.org/CVERecord?id=CVE-2025-61608), [CVE-2025-61609](https://www.cve.org/CVERecord?id=CVE-2025-61609), [CVE-2025-61610](https://www.cve.org/CVERecord?id=CVE-2025-61610), [CVE-2025-61612](https://www.cve.org/CVERecord?id=CVE-2025-61612), [CVE-2025-61613](https://www.cve.org/CVERecord?id=CVE-2025-61613), <br> [CVE-2025-61614](https://www.cve.org/CVERecord?id=CVE-2025-61614), [CVE-2025-61615](https://www.cve.org/CVERecord?id=CVE-2025-61615), [CVE-2025-61616](https://www.cve.org/CVERecord?id=CVE-2025-61616), [CVE-2025-69278](https://www.cve.org/CVERecord?id=CVE-2025-69278), [CVE-2025-69279](https://www.cve.org/CVERecord?id=CVE-2025-69279), <br> [CVE-2026-21548](https://www.cve.org/CVERecord?id=CVE-2026-21548) |
+| CVE IDs           | [CVE-2025-31717](https://www.cve.org/CVERecord?id=CVE-2025-31717), [CVE-2025-31718](https://www.cve.org/CVERecord?id=CVE-2025-31718), [CVE-2025-11131](https://www.cve.org/CVERecord?id=CVE-2025-11131), [CVE-2025-11132](https://www.cve.org/CVERecord?id=CVE-2025-11132), [CVE-2025-11133](https://www.cve.org/CVERecord?id=CVE-2025-11133), <br> [CVE-2025-3012](https://www.cve.org/CVERecord?id=CVE-2025-3012), [CVE-2025-61617](https://www.cve.org/CVERecord?id=CVE-2025-61617), [CVE-2025-61618](https://www.cve.org/CVERecord?id=CVE-2025-61618), [CVE-2025-61619](https://www.cve.org/CVERecord?id=CVE-2025-61619), [CVE-2025-61607](https://www.cve.org/CVERecord?id=CVE-2025-61607), <br> [CVE-2025-61608](https://www.cve.org/CVERecord?id=CVE-2025-61608), [CVE-2025-61609](https://www.cve.org/CVERecord?id=CVE-2025-61609), [CVE-2025-61610](https://www.cve.org/CVERecord?id=CVE-2025-61610), [CVE-2025-61612](https://www.cve.org/CVERecord?id=CVE-2025-61612), [CVE-2025-61613](https://www.cve.org/CVERecord?id=CVE-2025-61613), <br> [CVE-2025-61614](https://www.cve.org/CVERecord?id=CVE-2025-61614), [CVE-2025-61615](https://www.cve.org/CVERecord?id=CVE-2025-61615), [CVE-2025-61616](https://www.cve.org/CVERecord?id=CVE-2025-61616), [CVE-2025-69278](https://www.cve.org/CVERecord?id=CVE-2025-69278), [CVE-2025-69279](https://www.cve.org/CVERecord?id=CVE-2025-69279), <br> [CVE-2026-66085](https://www.cve.org/CVERecord?id=CVE-2026-66085), [CVE-2026-21548](https://www.cve.org/CVERecord?id=CVE-2026-21548) |
 | Vendor Website    | [https://www.unisoc.com](https://www.unisoc.com)                                        |
-| Identified in     | June - August 2025 (V1 - V20), February 2026 (V22)                                      |
+| Identified in     | June - September 2025 (V1 - V21), February 2026 (V22)                                      |
 | Identified by     | IoT Lab, University of Applied Sciences Upper Austria, Campus Hagenberg                 |
 | Website           | [https://www.fh-ooe.at/si/](https://www.fh-ooe.at/si/)                                  |
 | Team              | Denis Krämer B.Sc., Dieter Vymazal M.Sc., DI Markus Zeilinger                           |
@@ -18,7 +18,7 @@ Source: [https://www.unisoc.com/en/about/company-info](https://www.unisoc.com/en
 
 ## Overview
 
-During the 5G NR initial attachment procedure, unauthenticated radio resource control (RRC) messages are used to set up a connection between the baseband and a base station (gNB) of the 5G mobile network. By modifying downlink RRC setup messages in a specific manner, several reachable assertions in the baseband firmware of the Unisoc Tanggula T760 (rebranded as T8100) can be triggered, each of which result in a silent panic and restart of the modem. Consequently, the mobile network connection of the Motorola Moto G35 5G smartphone (which uses this SoC) becomes temporarily unavailable, and the modem keeps restarting until the transmission of the modified RRC packets via the gNB is stopped. This classifies each of the vulnerabilities as transient DoS.
+During the 5G NR initial attachment procedure, unauthenticated radio resource control (RRC) messages are used to set up a connection between the baseband and a base station (gNB) of the 5G mobile network. By modifying downlink RRC setup messages in a specific manner, several reachable assertions in the baseband firmware of the Unisoc Tanggula T760 (rebranded as T8100) can be triggered, each of which result in a silent panic and restart of the modem. Consequently, the mobile network connection of the Motorola Moto G35 5G smartphone (which uses this SoC) becomes temporarily unavailable, and the modem keeps restarting until the transmission of the modified RRC packets via the gNB is stopped. This classifies each of the vulnerabilities (except vulnerability V21) as transient DoS.
 
 ## Impact
 
@@ -472,6 +472,28 @@ According to Wireshark and by example of variant A (as shown in Figure 20), this
 <img src="assets/images/V20_rrc_setup_original_vs_modified.png" alt="">
 </details>
 
+## Vulnerability V21: world readable modem crash dumps ([CVE-2026-66085](https://www.cve.org/CVERecord?id=CVE-2026-66085))
+
+Upon a modem crash, the respective crash dump information is saved to the directory `/data/ylog/modem` on the UE. The files in this folder are read-/writable by anyone:
+
+```
+$ adb shell ls -lh /data/ylog/modem
+-rw-rw-rw- 1 system system 472M 2025-10-01 16:01 md_memory_20251001-160126.mem
+-rw-rw-rw- 1 system system 152M 2025-10-01 16:01 minidump_phy_20251001-160126.mem
+-rw-rw-rw- 1 system system 135M 2025-10-01 21:32 minidump_ps_20251001-213250.mem
+[...]
+```
+
+These crash dumps may contain sensitive information, such as the IMSI (as shown below for the PLMN-ID 00101), IMEI, $K_{ASME}$/$K_{SEAF}$ and the keys which are derived and used for the encryption and integrity protection of control and user plane traffic that is exchanged with the mobile network:
+
+```
+$ adb shell strings /data/ylog/modem/md_memory_20251001-160126.mem | grep 00101
+001010000069715
+[...]
+```
+
+An attacker with access to the local file system of the UE may trigger a modem crash using any of the other presented vulnerabilities and subsequently extract sensitive information from these memory dumps.
+
 ## Vulnerability V22: truncated uplinkConfig ([CVE-2026-21548](https://www.cve.org/CVERecord?id=CVE-2026-21548))
 
 Triggering vulnerability V22 results in the following adb log entry:
@@ -522,6 +544,8 @@ Unisoc publicly disclosed the vulnerabilities V14 - V20 as part of their [March 
 
 Unisoc publicly disclosed vulnerability V22 as part of their [August 2026 Security Bulletin](https://www.unisoc.com/en/support/announcement/2084109408382668801). Moreover, Unisoc stated that they have released updated baseband firmware which fixes this vulnerability. According to Unisoc, the baseband firmware version `5G_MODEM_V2_23A_W26.25.1` includes a patch for vulnerability V22.
 
+Unisoc publicly disclosed vulnerability V21 as part of their [October 2026 Security Bulletin](https://www.unisoc.com/en/support/announcement/2109454821805424641). Information on which software version fixes this vulnerability will be published in this advisory, once available.
+
 ## Communication Timeline
 
 We submitted a total of four vulnerability reports to Unisoc. The corresponding communication timelines are listed below.
@@ -560,7 +584,7 @@ We submitted a total of four vulnerability reports to Unisoc. The corresponding 
 | 2025-12-01 | Denis Krämer | Thanked for the information. Asked which baseband firmware version fixes the vulnerabilities V3 - V13. |
 | 2025-12-02 | Unisoc       | States that firmware version `5G_MODEM_V2_23B_W24.33.5_P18.2` fixes these issues. |
 
-### Vulnerability Report 3 (Vulnerabilities V14 - V20)
+### Vulnerability Report 3 (Vulnerabilities V14 - V21)
 
 | Date       | Sender       | Description |
 | ---------- | ------------ | ----------- |
@@ -569,11 +593,17 @@ We submitted a total of four vulnerability reports to Unisoc. The corresponding 
 | 2025-10-10 | Unisoc       | Acknowledges receipt of the report, but the response suggests a possible mix-up. |
 | 2025-10-10 | Denis Krämer | Inquired Unisoc about a possible mix-up. |
 | 2025-10-11 | Unisoc       | Apologizes for the mix-up. |
-| 2025-12-01 | Unisoc       | Acknowledges the vulnerabilities, plans to disclose them in March 2026. <br> Asks for the acknowledgement information. |
+| 2025-12-01 | Unisoc       | Acknowledges the vulnerabilities, plans to disclose V14 – V20 in March 2026 and V21 in May/June 2026. <br> Asks for the acknowledgement information. |
 | 2025-12-01 | Denis Krämer | Provided the acknowledgement information. |
 | 2026-03-09 | Denis Krämer | Inquired whether Unisoc still plans to disclose V14 – V20 in March 2026. <br> Asked which baseband firmware version fixes these vulnerabilities. |
 | 2026-03-09 | Unisoc       | States that it will disclose V14 – V20 in March 2026 as planned. <br> States that firmware version `5G_MODEM_V2_23B_W24.32.6_P19.16` fixes these issues. |
 | 2026-03-09 | -            | Unisoc releases their March 2026 security bulletin (predated to 2026-03-01). |
+| 2026-05-26 | Unisoc       | States that it needs more time to address vulnerability V21. |
+| 2026-05-26 | Denis Krämer | Asked for an update once the disclosure of vulnerability V21 is planned. |
+| 2026-07-23 | Unisoc       | Plans to disclose vulnerability V21 in October 2026 and provides its CVE ID. <br> Asks for the acknowledgement information. |
+| 2026-07-23 | Denis Krämer | Provided the acknowledgement information. <br> Informed Unisoc that the CVE ID they provided is already in use by another CNA. <br> Asked for a new CVE ID for vulnerability V21. |
+| 2026-07-24 | Unisoc       | Assigns a new CVE ID to vulnerability V21. |
+| 2027-10-12 | -            | Unisoc releases their October 2026 security bulletin (predated to 2026-10-01). |
 
 ### Vulnerability Report 4 (Vulnerability V22)
 
@@ -602,3 +632,4 @@ We submitted a total of four vulnerability reports to Unisoc. The corresponding 
 | 2026-03-15 | v3.0    | Add disclosure of vulnerabilities V14 - V20   |
 | 2026-08-04 | v4.0    | Add disclosure of vulnerability V22           |
 | 2026-08-13 | v4.1    | Include patch information for V22             |
+| 2026-11-12 | v5.0    | Add disclosure of vulnerability V21           |
